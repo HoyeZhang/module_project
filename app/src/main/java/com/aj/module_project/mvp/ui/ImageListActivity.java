@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.aj.module_project.R;
 import com.aj.module_project.mvp.contract.ImageListContract;
+import com.aj.module_project.mvp.model.ImageListModel;
 import com.aj.module_project.mvp.presenter.ImageLoadPresenter;
 
 /**
@@ -19,8 +20,8 @@ public class ImageListActivity extends BaseActivity<ImageLoadPresenter> implemen
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_list);
-        mPresenter = new ImageLoadPresenter();
-        mPresenter.setView(this);
+        mPresenter = new ImageLoadPresenter(new ImageListModel(),this);
+
         mPresenter.loadData();
 
     }

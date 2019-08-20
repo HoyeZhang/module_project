@@ -9,9 +9,13 @@ import com.aj.module_project.mvp.ui.IView;
  */
 public class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
     public  V view;
-    @Override
-    public void setView(IView view) {
-        this.view = (V) view;
+    public M model;
+
+
+    public BasePresenter(M model,V view){
+        this.model = model;
+        this.view = view;
+
     }
 
     @Override

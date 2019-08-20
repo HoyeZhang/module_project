@@ -7,10 +7,7 @@ import com.aj.module_project.mvp.ui.IView;
  * @time 2019/5/22.
  */
 public interface IPresenter {
-    /*
-    设置view
-     */
-    void setView(IView view);
+
     /*
     同步view生命周期，切断联系
      */

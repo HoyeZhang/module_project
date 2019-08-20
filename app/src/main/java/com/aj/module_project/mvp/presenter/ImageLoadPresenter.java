@@ -25,6 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ImageLoadPresenter extends BasePresenter<ImageListContract.Model,ImageListContract.View> {
 
 
+    public ImageLoadPresenter(ImageListContract.Model model, ImageListContract.View view) {
+        super(model, view);
+    }
+
     @Override
     public void destroy() {
 
@@ -32,17 +36,8 @@ public class ImageLoadPresenter extends BasePresenter<ImageListContract.Model,Im
 
 
     public void loadData() {
-        Retrofit retrofit = new Retrofit.Builder()
-                //设置数据解析器
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                //设置网络请求的Url地址
-                .baseUrl("http://gank.io")
-                .build();
-// 创建网络请求接口的实例
-        Api mApi = retrofit.create(Api.class);
-        mApi.getGirlList(2,1)
-        .subscribeOn(Schedulers.io())
+
+        model.getGirlList(1,2).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GankBaseResponse<List<GankItemBean>>>() {
 
